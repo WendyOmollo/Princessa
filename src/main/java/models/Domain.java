@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Domain {
     private String name;
@@ -69,5 +70,6 @@ public class Domain {
     public void add(Princess princess){
         princesses.add(princess);
     }
+
 
 }
