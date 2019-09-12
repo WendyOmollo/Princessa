@@ -2,6 +2,7 @@ package models;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -13,5 +14,21 @@ public class DomainTest {
 
     @After
     public void tearDown() throws Exception {
+    }
+
+    public Domain setUpNewDomain(){
+        return new Domain("Blue Ivies",1,"Taking care of flowers");
+    }
+
+    @Test
+    public void addDomain_true() throws Exception{
+        Domain domain = setUpNewDomain();
+        assertEquals(true,domain instanceof Domain);
+    }
+    @Test
+    public void addTwoDomains_true() throws Exception{
+        Domain domain = setUpNewDomain();
+        Domain otherDomain =setUpNewDomain();
+        assertEquals(2,Domain.getAll().size());
     }
 }
