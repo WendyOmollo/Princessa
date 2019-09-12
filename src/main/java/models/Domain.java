@@ -46,4 +46,7 @@ public class Domain {
     public static void setKingdoms(ArrayList<Domain> kingdoms) {
         Domain.kingdoms = kingdoms;
     }
+    public static Domain findById(int id){
+        return kingdoms.get(id-1);
+    }
 }

@@ -36,4 +36,9 @@ public class DomainTest {
         Domain domain = setUpNewDomain();
         assertEquals(1,domain.getId());
     }
+    @Test
+    public void addDomain_getId_findById() throws Exception{
+        Domain domain = setUpNewDomain();
+        assertEquals(1,domain.findById(domain.getId()).getId());
+    }
 }
