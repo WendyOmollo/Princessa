@@ -4,3 +4,11 @@ background-repeat:no-repeat;
 background-attachment:fixed;
 background-position:center;
 }
+.card{
+width:30%;
+height:40%;
+}
+h1{
+color:white;
+text-align:center;
+}

@@ -19,6 +19,10 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"layout.hbs");
             },new HandlebarsTemplateEngine());
 
+            get("/cards",(request, response) -> {
+                return new ModelAndView(model,"index.hbs");
+            },new HandlebarsTemplateEngine());
+
 
         }
     }
