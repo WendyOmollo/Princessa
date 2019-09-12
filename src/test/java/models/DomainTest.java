@@ -31,4 +31,9 @@ public class DomainTest {
         Domain otherDomain =setUpNewDomain();
         assertEquals(2,Domain.getAll().size());
     }
+    @Test
+    public void addDomain_getById_1() throws Exception{
+        Domain domain = setUpNewDomain();
+        assertEquals(1,domain.getId());
+    }
 }

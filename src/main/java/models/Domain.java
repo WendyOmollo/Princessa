@@ -24,7 +24,7 @@ public class Domain {
     }
 
     public int getId() {
-        return id;
+        return kingdoms.size();
     }
 
     public void setId(int id) {
