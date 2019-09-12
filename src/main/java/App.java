@@ -23,6 +23,10 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"index.hbs");
             },new HandlebarsTemplateEngine());
 
+            get("/form",(request, response) -> {
+                return new ModelAndView(model,"princess-form.hbs");
+            },new HandlebarsTemplateEngine());
+
 
         }
     }
