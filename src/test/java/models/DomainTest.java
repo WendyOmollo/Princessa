@@ -19,6 +19,9 @@ public class DomainTest {
     public Domain setUpNewDomain(){
         return new Domain("Blue Ivies",1,"Taking care of flowers");
     }
+    public Princess setUpNewPrincess(){
+        return new Princess("Rapunzel",1,12,"Hair","Tower");
+    }
 
     @Test
     public void addDomain_true() throws Exception{
@@ -53,7 +56,13 @@ public class DomainTest {
         assertEquals(formerId,domain.getId());
         assertNotEquals(formerName,domain.getName());
         assertNotEquals(formerCourse,domain.getCourse());
-
+    }
+    @Test
+    public void getDomain_checkForPrincesses() throws Exception{
+        Domain domain = setUpNewDomain();
+        Princess princess = setUpNewPrincess();
+        domain.add(princess);
+        assertTrue(Domain.getPrincesses().contains(princess));
     }
 
 }
