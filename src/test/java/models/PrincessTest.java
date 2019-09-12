@@ -28,4 +28,9 @@ public class PrincessTest {
         Princess princess = setUpNewPrincess();
         assertEquals(1,princess.getId());
     }
+    @Test
+    public void addPrincess_findPrincessById() throws Exception{
+        Princess princess = setUpNewPrincess();
+        assertEquals(Princess.findById(princess.getId()),princess);
+    }
 }

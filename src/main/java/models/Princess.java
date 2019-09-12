@@ -26,7 +26,7 @@ public class Princess {
     }
 
     public int getId() {
-        return id;
+        return princesses.size();
     }
 
     public void setId(int id) {
@@ -55,5 +55,8 @@ public class Princess {
 
     public static void setPrincesses(ArrayList<Princess> princesses) {
         Princess.princesses = princesses;
+    }
+    public static Princess findById(int id){
+        return princesses.get(id-1);
     }
 }
