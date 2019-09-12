@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Princess {
     private String name;
     private int id;
+    private int age;
     private String strength;
     private String weakness;
     private static ArrayList<Princess> princesses = new ArrayList<>();
 
-    public Princess(String name,int id,String strength,String weakness){
+    public Princess(String name,int id,int age,String strength,String weakness){
         this.name = name;
-        this.id = princesses.size();
+
+        this.age = age;
         this.strength=strength;
         this.weakness = weakness;
         princesses.add(this);
@@ -31,6 +33,14 @@ public class Princess {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getStrength() {
@@ -58,5 +68,11 @@ public class Princess {
     }
     public static Princess findById(int id){
         return princesses.get(id-1);
+    }
+    public void update(String name,int age,String strength,String weakness){
+        this.name = name;
+        this.age = age;
+        this.strength=strength;
+        this.weakness= weakness;
     }
 }
