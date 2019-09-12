@@ -54,4 +54,5 @@ public class Domain {
         this.id =id;
         this.course =course;
     }
+
 }

@@ -29,7 +29,8 @@ public class DomainTest {
     public void addTwoDomains_true() throws Exception{
         Domain domain = setUpNewDomain();
         Domain otherDomain =setUpNewDomain();
-        assertEquals(2,Domain.getAll().size());
+        assertEquals(true,Domain.getAll().contains(domain));
+        assertEquals(true,Domain.getAll().contains(otherDomain));
     }
     @Test
     public void addDomain_getById_1() throws Exception{
@@ -39,7 +40,7 @@ public class DomainTest {
     @Test
     public void addDomain_getId_findById() throws Exception{
         Domain domain = setUpNewDomain();
-        assertEquals(1,domain.findById(domain.getId()).getId());
+        assertEquals(Domain.findById(domain.getId()),domain);
     }
     @Test
     public void getDomain_updateDomain_getNewDetails() throws Exception{
@@ -54,4 +55,5 @@ public class DomainTest {
         assertNotEquals(formerCourse,domain.getCourse());
 
     }
+
 }
