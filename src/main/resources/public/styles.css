@@ -22,3 +22,8 @@ font-family: 'Merienda', cursive;
 margin-left:35px;
 color:white;
 }
+button:hover{
+transition:.2s;
+padding-left:1rem;
+padding:right:1rem;
+}

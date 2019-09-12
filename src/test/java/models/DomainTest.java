@@ -17,7 +17,7 @@ public class DomainTest {
     }
 
     public Domain setUpNewDomain(){
-        return new Domain("Blue Ivies",1,"Taking care of flowers");
+        return new Domain("Blue Ivies",1,"Taking care of flowers",11);
     }
     public Princess setUpNewPrincess(){
         return new Princess("Rapunzel",1,12,"Hair","Tower");
@@ -51,11 +51,13 @@ public class DomainTest {
         String formerName = domain.getName();
         int formerId = domain.getId();
         String formerCourse = domain.getCourse();
+        int formerMaxSize = domain.getMaxSize();
 
-        domain.update("Red Devils",1,"Killing bad memories");
+        domain.update("Red Devils",1,"Killing bad memories",12);
         assertEquals(formerId,domain.getId());
         assertNotEquals(formerName,domain.getName());
         assertNotEquals(formerCourse,domain.getCourse());
+        assertNotEquals(formerMaxSize,domain.getMaxSize());
     }
     @Test
     public void getDomain_checkForPrincesses() throws Exception{

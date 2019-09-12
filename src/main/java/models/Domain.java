@@ -6,14 +6,16 @@ import java.util.Objects;
 public class Domain {
     private String name;
     private int id;
+    private int maxSize;
     private String course;
     private static ArrayList<Domain> kingdoms= new ArrayList<>();
     private static ArrayList<Princess> princesses= new ArrayList<Princess>();
 
-    public Domain(String name,int id,String course){
+    public Domain(String name,int id,String course,int maxSize){
         this.name = name;
         this.id = kingdoms.size();
         this.course = course;
+        this.maxSize=maxSize;
         kingdoms.add(this);
 
     }
@@ -42,6 +44,14 @@ public class Domain {
         this.course = course;
     }
 
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
     public static ArrayList<Domain> getAll() {
         return kingdoms;
     }
@@ -62,10 +72,11 @@ public class Domain {
     public static Domain findById(int id){
         return kingdoms.get(id-1);
     }
-    public void update(String name,int id,String course){
+    public void update(String name,int id,String course,int maxSize){
         this.name = name;
         this.id =id;
         this.course =course;
+        this.maxSize=maxSize;
     }
     public void add(Princess princess){
         princesses.add(princess);

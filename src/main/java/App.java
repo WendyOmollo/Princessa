@@ -27,6 +27,19 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"princess-form.hbs");
             },new HandlebarsTemplateEngine());
 
+            post("/princess",(request, response) -> {
+                String lovelyName = request.queryParams("lovelyName");
+                String lovelyAge = request.queryParams("lovelyAge");
+                String lovelyStrength = request.queryParams("lovelyStrength");
+                String lovelyWeakness = request.queryParams("lovelyWeakness");
+
+                model.put("lovelyName",lovelyName);
+                model.put("lovelyAge",lovelyAge);
+                model.put("lovelyStrength",lovelyStrength);
+                model.put("lovelyWeakness",lovelyWeakness);
+                return new ModelAndView(model,"");
+
+            },new HandlebarsTemplateEngine());
 
         }
     }
