@@ -49,4 +49,9 @@ public class Domain {
     public static Domain findById(int id){
         return kingdoms.get(id-1);
     }
+    public void update(String name,int id,String course){
+        this.name = name;
+        this.id =id;
+        this.course =course;
+    }
 }

@@ -41,4 +41,17 @@ public class DomainTest {
         Domain domain = setUpNewDomain();
         assertEquals(1,domain.findById(domain.getId()).getId());
     }
+    @Test
+    public void getDomain_updateDomain_getNewDetails() throws Exception{
+        Domain domain = setUpNewDomain();
+        String formerName = domain.getName();
+        int formerId = domain.getId();
+        String formerCourse = domain.getCourse();
+
+        domain.update("Red Devils",1,"Killing bad memories");
+        assertEquals(formerId,domain.getId());
+        assertNotEquals(formerName,domain.getName());
+        assertNotEquals(formerCourse,domain.getCourse());
+
+    }
 }
