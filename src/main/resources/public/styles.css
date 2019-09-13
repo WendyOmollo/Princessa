@@ -4,10 +4,7 @@ background-repeat:no-repeat;
 background-attachment:fixed;
 background-position:center;
 }
-.card{
-width:30%;
-height:40%;
-}
+
 h1{
 color:white;
 text-align:center;
@@ -26,4 +23,10 @@ button:hover{
 transition:.2s;
 padding-left:1rem;
 padding:right:1rem;
+}
+.card{
+margin-top:10px;
+}
+#love{
+margin-left:35px;
 }

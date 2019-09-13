@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Princess {
     private String name;
@@ -8,15 +9,49 @@ public class Princess {
     private int age;
     private String strength;
     private String weakness;
-    private static ArrayList<Princess> princesses = new ArrayList<>();
+    private int domain_id;
+//    private static ArrayList<Princess> princesses = new ArrayList<>();
 
-    public Princess(String name,int id,int age,String strength,String weakness){
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Princess princess = (Princess) o;
+        return getAge() == princess.getAge() &&
+                getName().equals(princess.getName()) &&
+                getStrength().equals(princess.getStrength()) &&
+                getWeakness().equals(princess.getWeakness());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(), getStrength(), getWeakness());
+    }
+
+    public int getDomain_id() {
+        return domain_id;
+    }
+
+    public void setDomain_id(int domain_id) {
+        this.domain_id = domain_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Princess(String name, int age, String strength, String weakness, int domain_id){
         this.name = name;
 
         this.age = age;
         this.strength=strength;
         this.weakness = weakness;
-        princesses.add(this);
+        this.domain_id = domain_id;
+//        princesses.add(this);
     }
 
     public String getName() {
@@ -27,13 +62,6 @@ public class Princess {
         this.name = name;
     }
 
-    public int getId() {
-        return princesses.size();
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getAge() {
         return age;
@@ -59,20 +87,6 @@ public class Princess {
         this.weakness = weakness;
     }
 
-    public static ArrayList<Princess> getPrincesses() {
-        return princesses;
-    }
 
-    public static void setPrincesses(ArrayList<Princess> princesses) {
-        Princess.princesses = princesses;
-    }
-    public static Princess findById(int id){
-        return princesses.get(id-1);
-    }
-    public void update(String name,int age,String strength,String weakness){
-        this.name = name;
-        this.age = age;
-        this.strength=strength;
-        this.weakness= weakness;
-    }
+
 }

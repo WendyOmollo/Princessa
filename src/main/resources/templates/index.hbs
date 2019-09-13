@@ -1,94 +1,52 @@
 {{#partial "content"}}
-    <h1>Princesses of our time</h1>
-    <div class="card-group">
-        <!-- Card -->
-        <div class="card mb-4  mr-4">
 
-            <!-- Card image -->
-            <div class="view overlay">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <h1>Princesses</h1>
+                </div>
+                <div class="row">
+                {{#if princesses }}
+                {{#each princesses}}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>{{ name }}</strong></h4>
+                            <a class="btn btn secondary" href="/princesses/{{id}}">Info</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{ else }}
+                <p>Waiting...</p>
+                    {{/if}}
+                </div>
             </div>
-
-            <!-- Card content -->
-            <div class="card-body">
-
-                <!-- Title -->
-                <h4 class="card-title"><strong>Bella</strong></h4>
-                <!-- Text -->
-                <p class="card-text"><strong>Age:</strong>21</p>
-                <p class="card-text"><strong>Strength:</strong>Rose Flowers</p>
-                <p class="card-text"><strong>Weakness:</strong>Love</p>
-                <button class="btn btn-secondary">Add to Domain</button>
+            <div class="col-md-4">
+                <div class="row">
+                    <h1>Domains</h1>
+                </div>
+                <div class="row">
+                    {{#if domains}}
+                        {{#each domains}}
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><strong>{{ name }}</strong></h4>
+                                        <a class="btn btn-secondary" href="/domains/{{id}}">Info</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{ else }}
+                        <p>Waiting...</p>
+                    {{/if}}
+                </div>
             </div>
-            <!-- Card content -->
-
         </div>
-        <!-- Card -->
-
-        <!-- Card -->
-        <div class="card mb-4  mr-4">
-
-            <!-- Card image -->
-            <div class="view overlay">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-
-            <!-- Card content -->
-            <div class="card-body">
-
-                <!-- Title -->
-                <h4 class="card-title"><strong>Bella</strong></h4>
-                <!-- Text -->
-                <p class="card-text"><strong>Age:</strong>21</p>
-                <p class="card-text"><strong>Strength:</strong>Rose Flowers</p>
-                <p class="card-text"><strong>Weakness:</strong>Love</p>
-                <button class="btn btn-secondary">Add to Domain</button>
-            </div>
-            <!-- Card content -->
-
-        </div>
-        <!-- Card -->
-
-        <!-- Card -->
-        <div class="card mb-4  mr-4">
-
-            <!-- Card image -->
-            <div class="view overlay">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-
-            <!-- Card content -->
-            <div class="card-body">
-
-                <!-- Title -->
-                <h4 class="card-title"><strong>Bella</strong></h4>
-                <!-- Text -->
-                <p class="card-text"><strong>Age:</strong>21</p>
-                <p class="card-text"><strong>Strength:</strong>Rose Flowers</p>
-                <p class="card-text"><strong>Weakness:</strong>Love</p>
-                <button class="btn btn-secondary">Add to Domain</button>
-            </div>
-            <!-- Card content -->
-
-        </div>
-        <!-- Card -->
-
     </div>
-    <div class="container [hidden]">
-        {{#if}}
-            {{#each }}
 
-            {{/each}}
-
-            {{ else }}
-        {{/if}}
-    </div>
 {{/partial}}
 
 

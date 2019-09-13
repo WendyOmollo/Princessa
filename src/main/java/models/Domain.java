@@ -7,17 +7,35 @@ public class Domain {
     private String name;
     private int id;
     private int maxSize;
-    private String course;
-    private static ArrayList<Domain> kingdoms= new ArrayList<>();
-    private static ArrayList<Princess> princesses= new ArrayList<Princess>();
+    private String cause;
 
-    public Domain(String name,int id,String course,int maxSize){
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Domain domain = (Domain) o;
+        return getMaxSize() == domain.getMaxSize() &&
+                getName().equals(domain.getName()) &&
+                getCause().equals(domain.getCause());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getMaxSize(), getCause());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Domain(String name, String cause, int maxSize){
         this.name = name;
-        this.id = kingdoms.size();
-        this.course = course;
+        this.cause = cause;
         this.maxSize=maxSize;
-        kingdoms.add(this);
-
     }
 
     public String getName() {
@@ -28,20 +46,13 @@ public class Domain {
         this.name = name;
     }
 
-    public int getId() {
-        return kingdoms.size();
+
+    public String getCause() {
+        return cause;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 
     public int getMaxSize() {
@@ -52,35 +63,7 @@ public class Domain {
         this.maxSize = maxSize;
     }
 
-    public static ArrayList<Domain> getAll() {
-        return kingdoms;
-    }
 
-    public static void setKingdoms(ArrayList<Domain> kingdoms) {
-        Domain.kingdoms = kingdoms;
-    }
-
-    public static ArrayList<Princess> getPrincesses
-            () {
-        return princesses;
-    }
-
-    public static void setPrincesses(ArrayList<Princess> princesses) {
-        Domain.princesses = princesses;
-    }
-
-    public static Domain findById(int id){
-        return kingdoms.get(id-1);
-    }
-    public void update(String name,int id,String course,int maxSize){
-        this.name = name;
-        this.id =id;
-        this.course =course;
-        this.maxSize=maxSize;
-    }
-    public void add(Princess princess){
-        princesses.add(princess);
-    }
 
 
 }

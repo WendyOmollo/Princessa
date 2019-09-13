@@ -2,42 +2,51 @@
     <div class="row">
         <div class="col-md-6">
             <div class="container" id="lovely">
-                <form action="/princess">
+                <form action="/princesses/new" method="POST">
                     <div class="md-form w-50">
-                        <input id="input-char-counter" name="lovelyName" type="text" length="5" class="form-control">
-                        <label for="input-char-counter"class="text-dark" >Name</label>
+                        <input id="name" name="name" type="text" length="5" class="form-control">
+                        <label for="name"class="text-dark" >Name</label>
                     </div>
                     <div class="md-form w-50">
-                        <input id="input-char-counter" name="lovelyAge" type="text" length="5" class="form-control">
-                        <label for="input-char-counter" class="text-dark">Age</label>
+                        <input id="age" name="age" type="number" length="5" class="form-control">
+                        <label for="age" class="text-dark">Age</label>
                     </div>
                     <div class="md-form w-50">
-                        <input id="input-char-counter" name="lovelyStrength" type="text" length="5" class="form-control">
-                        <label for="input-char-counter" class="text-dark">Strength</label>
+                        <input id="strength" name="strength" type="text" length="5" class="form-control">
+                        <label for="strength" class="text-dark">Strength</label>
                     </div>
                     <div class="md-form w-50">
-                        <input id="input-char-counter" name="lovelyWeakness" type="text" length="5" class="form-control">
-                        <label for="input-char-counter" class="text-dark">Weakness</label>
-                        <button type="submit" class="btn btn-secondary" >Go!</button>
+                        <input id="weakness" name="weakness" type="text" length="5" class="form-control">
+                        <label for="weakness" class="text-dark">Weakness</label>
                     </div>
+                    <div class="md-form w-50">
+
+                        <select id="domain_id" name="domain_id" type="text" length="5" class="form-control">
+                            {{#each domains}}
+                                <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <label for="domain_id" class="text-dark">Domain</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" >Go!</button>
                 </form>
-            </div>
 
         </div>
+    </div>
         <div class="col-md-6">
-        <div class="container">
-            <form action="">
+        <div class="container" id="love">
+            <form action="/domains/new" method="POST">
                 <div class="md-form w-50">
-                    <input id="input-char-counter" name="domainName" type="text" length="5" class="form-control">
-                    <label for="input-char-counter" class="text-white">Name</label>
+                    <input  id="domainName" name="domainName" type="text" length="5" class="form-control">
+                    <label for="domainName" class="text-white">Name</label>
                 </div>
                 <div class="md-form w-50">
-                    <input id="input-char-counter" name="domainMaxSize" type="text" length="5" class="form-control">
-                    <label for="input-char-counter" class="text-white">Group size</label>
+                    <input  id="domainMaxSize" name="domainMaxSize" type="number" length="5" class="form-control">
+                    <label for="domainMaxSize"  class="text-white">Group size</label>
                 </div>
                 <div class="md-form w-50">
-                    <input id="input-char-counter" name="domainCourse" type="text" length="5" class="form-control">
-                    <label for="input-char-counter" class="text-white">Course</label>
+                    <input  id="domainCause" name="domainCause" type="text" length="5" class="form-control">
+                    <label for="domainCause" class="text-white">Cause</label>
                 </div>
                 <button type="submit" class="btn btn-secondary" >Go!</button>
             </form>
