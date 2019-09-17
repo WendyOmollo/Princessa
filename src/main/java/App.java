@@ -18,7 +18,7 @@ import static spark.Spark.*;
         public static void main(String[] args) {
             
             staticFileLocation("/public");
-            String connectionString = "jdbc:h2:~/Princessa.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+            String connectionString = "jdbc:postgresql:~/Princessa.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
             Sql2o sql2o = new Sql2o(connectionString, "", "");
             Sql2oPrincessDao princessDao = new Sql2oPrincessDao(sql2o);
             Sql2oDomainDao domainDao = new Sql2oDomainDao(sql2o);
@@ -100,7 +100,7 @@ import static spark.Spark.*;
                 model.put("princess",princess);
                 response.redirect("/cards");
                 return null;
-            },new HandlebarsTemplateEngine());git
+            },new HandlebarsTemplateEngine());
 
 
         }
