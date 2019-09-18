@@ -46,14 +46,13 @@ public class Sql2oDomainDao implements DomainDao {
 
     @Override
     public void update(int id, String name, int maxSize, String cause){
-        String sql = "UPDATE domains SET name = :name, maxSize = :maxSize, cause =: cause  WHERE id=:id";
+        String sql = "UPDATE domains SET name = :name, maxSize = :maxSize, cause =:cause  WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", name)
                     .addParameter("id", id)
                     .addParameter("maxSize", maxSize)
                     .addParameter("cause", cause)
-                    
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);

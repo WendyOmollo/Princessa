@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "com.heroku.sdk.heroku-gradle" version "1.0.4"
 }
 
 group 'com.moringaschool.Princessa'
@@ -23,3 +24,8 @@ dependencies {
 applicationName = "Princessa"
 mainClassName = 'App'
 task stage(dependsOn: ['clean', 'installDist'])
+
+heroku{
+    appName = "morning-hamlet-06193"
+}
+

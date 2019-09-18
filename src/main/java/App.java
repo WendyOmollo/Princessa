@@ -15,11 +15,20 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 
     public class App {
+
+        static int getHerokuAssignedPort() {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            if (processBuilder.environment().get("PORT") != null) {
+                return Integer.parseInt(processBuilder.environment().get("PORT"));
+            }
+            return 4567;
+        }
         public static void main(String[] args) {
-            
+
+            port(getHerokuAssignedPort());
             staticFileLocation("/public");
-            String connectionString = "jdbc:postgresql:~/Princessa.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-            Sql2o sql2o = new Sql2o(connectionString, "", "");
+            String connectionString = "jdbc:postgresql:ec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
+            Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
             Sql2oPrincessDao princessDao = new Sql2oPrincessDao(sql2o);
             Sql2oDomainDao domainDao = new Sql2oDomainDao(sql2o);
 

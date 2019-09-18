@@ -3,6 +3,7 @@ package dao;
 import models.Princess;
 import org.sql2o.*;
 import java.util.List;
+import java.util.Objects;
 
 public class Sql2oPrincessDao implements PrincessDao {
 
@@ -18,6 +19,19 @@ public class Sql2oPrincessDao implements PrincessDao {
             return con.createQuery("SELECT * FROM princesses") //raw sql
                     .executeAndFetch(Princess.class); //fetch a list
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sql2oPrincessDao that = (Sql2oPrincessDao) o;
+        return Objects.equals(sql2o, that.sql2o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sql2o);
     }
 
     @Override
@@ -47,7 +61,7 @@ public class Sql2oPrincessDao implements PrincessDao {
 
     @Override
     public void update(int id, String newName, int newAge, String newStrength, String newWeakness, int newDomain_id){
-        String sql = "UPDATE princesses SET name = :name, age = :age, strength = :strength, weakness =: weakness, domain_id = :domain_is  WHERE id=:id";
+        String sql = "UPDATE princesses SET name = :name, age = :age, strength = :strength, weakness = :weakness, domain_id = :domain_id  WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", newName)
@@ -55,6 +69,7 @@ public class Sql2oPrincessDao implements PrincessDao {
                     .addParameter("strength", newStrength)
                     .addParameter("weakness", newWeakness)
                     .addParameter("domain_id", newDomain_id)
+                    .addParameter("age", newAge)
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
@@ -84,4 +99,5 @@ public class Sql2oPrincessDao implements PrincessDao {
             System.out.println(ex);
         }
     }
+
 }
