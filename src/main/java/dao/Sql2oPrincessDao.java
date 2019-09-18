@@ -1,6 +1,5 @@
 package dao;
 
-import DB.jav;
 import models.Princess;
 import org.sql2o.*;
 import java.util.List;
@@ -38,7 +37,7 @@ public class Sql2oPrincessDao implements PrincessDao {
     @Override
     public void add(Princess princess) {
         String sql = "INSERT INTO princesses (name,age,strength,weakness,domain_id) VALUES (:name,:age,:strength,:weakness,:domain_id)";
-        try(Connection con = jav.sql2o.open()){
+        try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(princess)
                     .executeUpdate()
@@ -51,7 +50,7 @@ public class Sql2oPrincessDao implements PrincessDao {
 
     @Override
     public Princess findById(int id) {
-        try(Connection con = jav.sql2o.open()){
+        try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM princesses WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Princess.class);
@@ -63,7 +62,7 @@ public class Sql2oPrincessDao implements PrincessDao {
     @Override
     public void update(int id, String newName, int newAge, String newStrength, String newWeakness, int newDomain_id){
         String sql = "UPDATE princesses SET name = :name, age = :age, strength = :strength, weakness = :weakness, domain_id = :domain_id  WHERE id=:id";
-        try(Connection con = jav.sql2o.open()){
+        try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", newName)
                     .addParameter("id", id)
@@ -80,7 +79,7 @@ public class Sql2oPrincessDao implements PrincessDao {
     @Override
     public void deleteById(int id) {
         String sql = "DELETE from princesses WHERE id=:id";
-        try (Connection con = jav.sql2o.open()) {
+        try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
@@ -93,7 +92,7 @@ public class Sql2oPrincessDao implements PrincessDao {
     @Override
     public void clearAllPrincesses() {
         String sql = "DELETE from princesses";
-        try (Connection con = jav.sql2o.open()) {
+        try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();
         } catch (Sql2oException ex){
