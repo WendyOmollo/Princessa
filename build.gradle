@@ -23,7 +23,7 @@ dependencies {
 }
 applicationName = "Princessa"
 mainClassName = 'App'
-task stage(dependsOn: ['clean', 'installDist'])
+task stage(dependsOn: ['clean', 'installApp'])
 
 heroku{
     appName = "morning-hamlet-06193"

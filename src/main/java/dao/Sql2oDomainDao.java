@@ -1,5 +1,6 @@
 package dao;
 
+import DB.jav;
 import models.Domain;
 import org.sql2o.*;
 import java.util.List;
@@ -13,7 +14,7 @@ public class Sql2oDomainDao implements DomainDao {
 
     @Override
     public List<Domain> getAll() {
-        try(Connection con = sql2o.open()){
+        try(Connection con = jav.sql2o.open()){
             return con.createQuery("SELECT * FROM domains") //raw sql
                     .executeAndFetch(Domain.class); //fetch a list
         }
@@ -22,7 +23,7 @@ public class Sql2oDomainDao implements DomainDao {
     @Override
     public void add(Domain domain) {
         String sql = "INSERT INTO domains (name,maxSize,cause) VALUES (:name,:maxSize,:cause)";
-        try(Connection con = sql2o.open()){
+        try(Connection con = jav.sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(domain)
                     .executeUpdate()
@@ -35,7 +36,7 @@ public class Sql2oDomainDao implements DomainDao {
 
     @Override
     public Domain findById(int id) {
-        try(Connection con = sql2o.open()){
+        try(Connection con = jav.sql2o.open()){
             return con.createQuery("SELECT * FROM domains WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Domain.class);
@@ -47,7 +48,7 @@ public class Sql2oDomainDao implements DomainDao {
     @Override
     public void update(int id, String name, int maxSize, String cause){
         String sql = "UPDATE domains SET name = :name, maxSize = :maxSize, cause =:cause  WHERE id=:id";
-        try(Connection con = sql2o.open()){
+        try(Connection con = jav.sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", name)
                     .addParameter("id", id)
@@ -62,7 +63,7 @@ public class Sql2oDomainDao implements DomainDao {
     @Override
     public void deleteById(int id) {
         String sql = "DELETE from domains WHERE id=:id";
-        try (Connection con = sql2o.open()) {
+        try (Connection con = jav.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
@@ -75,7 +76,7 @@ public class Sql2oDomainDao implements DomainDao {
     @Override
     public void clearAllDomains() {
         String sql = "DELETE from domains";
-        try (Connection con = sql2o.open()) {
+        try (Connection con = jav.sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();
         } catch (Sql2oException ex){
