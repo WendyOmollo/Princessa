@@ -36,7 +36,7 @@ import static spark.Spark.*;
 
 
             get("/",(request, response) -> {
-                return new ModelAndView(model,"layout.hbs");
+                return new ModelAndView(model,"index.hbs");
             },new HandlebarsTemplateEngine());
 
             get("/cards",(request, response) -> {
