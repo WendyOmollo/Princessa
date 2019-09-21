@@ -19,5 +19,6 @@ public interface DomainDao {
 
 
      void deleteById(int id);
+
      void clearAllDomains();
 }

@@ -27,7 +27,7 @@ import static spark.Spark.*;
 
             port(getHerokuAssignedPort());
             staticFileLocation("/public");
-            String connectionString = "jdbc:postgresql:ec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
+            String connectionString = "jdbc:postgresql://mckymsziswhzlc:50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6bec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
             Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
             Sql2oPrincessDao princessDao = new Sql2oPrincessDao(sql2o);
             Sql2oDomainDao domainDao = new Sql2oDomainDao(sql2o);
@@ -36,7 +36,7 @@ import static spark.Spark.*;
 
 
             get("/",(request, response) -> {
-                return new ModelAndView(model,"index.hbs");
+                return new ModelAndView(model,"layout.hbs");
             },new HandlebarsTemplateEngine());
 
             get("/cards",(request, response) -> {
@@ -53,6 +53,16 @@ import static spark.Spark.*;
                 model.put("princesses", princesses);
                 model.put("domains", domains);
                 return new ModelAndView(model,"princess-form.hbs");
+            },new HandlebarsTemplateEngine());
+
+            get("/princesses/:id/delete",(request, response) -> {
+                int idOfPrincess = Integer.parseInt(request.params("id"));
+                Princess princess = princessDao.findById(idOfPrincess);
+                Domain domain = domainDao.findById(princess.getDomain_id());
+                model.put("domain", domain);
+                model.put("princess",princess);
+                response.redirect("/cards");
+                return null;
             },new HandlebarsTemplateEngine());
 
             get("/princesses/:id",(request, response) -> {
@@ -101,15 +111,7 @@ import static spark.Spark.*;
                 return null;
             },new HandlebarsTemplateEngine());
 
-            get("/princesses/:id/delete",(request, response) -> {
-                int idOfPrincess = Integer.parseInt(request.params("id"));
-                Princess princess = princessDao.findById(idOfPrincess);
-                Domain domain = domainDao.findById(princess.getDomain_id());
-                model.put("domain", domain);
-                model.put("princess",princess);
-                response.redirect("/cards");
-                return null;
-            },new HandlebarsTemplateEngine());
+
 
 
         }
