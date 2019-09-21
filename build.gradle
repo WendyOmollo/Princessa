@@ -10,7 +10,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -23,7 +23,7 @@ dependencies {
 }
 applicationName = "Princessa"
 mainClassName = 'App'
-task stage(dependsOn: ['clean', 'installApp'])
+task stage(dependsOn: ['clean', 'installDist'])
 
 heroku{
     appName = "morning-hamlet-06193"

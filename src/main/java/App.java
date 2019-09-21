@@ -16,16 +16,18 @@ import static spark.Spark.*;
 
     public class App {
 
-        static int getHerokuAssignedPort() {
-            ProcessBuilder processBuilder = new ProcessBuilder();
-            if (processBuilder.environment().get("PORT") != null) {
-                return Integer.parseInt(processBuilder.environment().get("PORT"));
-            }
-            return 4567;
-        }
-        public static void main(String[] args) {
 
-            port(getHerokuAssignedPort());
+        public static void main(String[] args) {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            Integer port;
+
+            if(processBuilder.environment().get("PORT") !=null){
+                port = Integer.parseInt(processBuilder.environment().get("PORT"));
+            }else{
+                port = 4567;
+            }
+                port(port);
+
             staticFileLocation("/public");
             String connectionString = "jdbc:postgresql://mckymsziswhzlc:50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6bec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
             Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
@@ -115,4 +117,5 @@ import static spark.Spark.*;
 
 
         }
+    }
     }
