@@ -29,11 +29,14 @@ import static spark.Spark.*;
                 port(port);
 
             staticFileLocation("/public");
-            String connectionString = "jdbc:postgresql://mckymsziswhzlc:50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6bec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
-            Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
+
+            String connectionString = "jdbc:postgresql://localhost:5432/princessdomain";
+            Sql2o sql2o = new Sql2o(connectionString, "moringa", "hyperloop");
+//            String connectionString = "jdbc:postgresql://mckymsziswhzlc:50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6bec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
+//
+//Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
             Sql2oPrincessDao princessDao = new Sql2oPrincessDao(sql2o);
             Sql2oDomainDao domainDao = new Sql2oDomainDao(sql2o);
-
             Map<String, Object> model = new HashMap<>();
 
 
@@ -57,15 +60,6 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"princess-form.hbs");
             },new HandlebarsTemplateEngine());
 
-            get("/princesses/:id/delete",(request, response) -> {
-                int idOfPrincess = Integer.parseInt(request.params("id"));
-                Princess princess = princessDao.findById(idOfPrincess);
-                Domain domain = domainDao.findById(princess.getDomain_id());
-                model.put("domain", domain);
-                model.put("princess",princess);
-                response.redirect("/cards");
-                return null;
-            },new HandlebarsTemplateEngine());
 
             get("/princesses/:id",(request, response) -> {
                 int idOfPrincess = Integer.parseInt(request.params("id"));
@@ -76,6 +70,18 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"princess-details.hbs");
             },new HandlebarsTemplateEngine());
 
+            get("/princesses/:id/delete",(request, response) -> {
+                int idOfPrincess = Integer.parseInt(request.params("id"));
+                Princess princess = princessDao.findById(idOfPrincess);
+                princessDao.deleteById(idOfPrincess);
+                model.put("princess",princess);
+                model.put("princesses", princessDao.getAll());
+                model.put("domains", domainDao.getAll());
+                response.redirect("/cards");
+                return null;
+            },new HandlebarsTemplateEngine());
+
+
             get("/domains/:id",(request, response) -> {
                 int idOfDomain = Integer.parseInt(request.params("id"));
                 Domain domain = domainDao.findById(idOfDomain);
@@ -83,7 +89,7 @@ import static spark.Spark.*;
                 return new ModelAndView(model,"domain-details.hbs");
             },new HandlebarsTemplateEngine());
 
-            post("/princesses/new",(request, response) -> {
+            post("/form/princesses",(request, response) -> {
                 String lovelyName = request.queryParams("name");
                 int lovelyAge = Integer.parseInt(request.queryParams("age"));
                 String lovelyStrength = request.queryParams("strength");
@@ -99,7 +105,7 @@ import static spark.Spark.*;
                 return null;
             },new HandlebarsTemplateEngine());
 
-            post("/domains/new",(request, response) -> {
+            post("/form/domains",(request, response) -> {
                 String lovelyName = request.queryParams("domainName");
                 int lovelySize = Integer.parseInt(request.queryParams("domainMaxSize"));
                 String lovelyCause = request.queryParams("domainCause");
@@ -115,7 +121,6 @@ import static spark.Spark.*;
 
 
 
-
         }
     }
-    }
+

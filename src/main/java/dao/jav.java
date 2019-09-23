@@ -1,4 +1,4 @@
-package DB;
+package dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ public class jav {
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
-                dbUri = new URI("postgres://localhost:5432/princessdomain");
+                dbUri = new URI("postgresql://localhost:5432/princessdomain");
             } else {
                 dbUri = new URI(System.getenv("DATABASE_URL"));
             }

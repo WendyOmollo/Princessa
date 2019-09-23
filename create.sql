@@ -1,6 +1,6 @@
 
 
-SET MODE PostgreSQL;
+
 
 
 CREATE DATABASE princessdomain;
