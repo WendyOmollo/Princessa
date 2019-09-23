@@ -1,1 +1,1 @@
-web: ./build/install/Princessa/bin/Princessa
+web: ./build/install/princessa/bin/princessa

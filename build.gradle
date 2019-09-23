@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id "com.heroku.sdk.heroku-gradle" version "1.0.4"
+
 }
 
 group 'com.moringaschool.Princessa'
@@ -19,13 +19,10 @@ dependencies {
     compile "com.sparkjava:spark-template-handlebars:2.5.5" //we'll need this for later!
     compile 'org.slf4j:slf4j-simple:1.7.21' //to ensure easy to read logging.
     compile 'org.sql2o:sql2o:1.5.4'
-    compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 }
-applicationName = "Princessa"
+applicationName = "princessa"
 mainClassName = 'App'
 task stage(dependsOn: ['clean', 'installApp'])
 
-heroku{
-    appName = "morning-hamlet-06193"
-}
 
