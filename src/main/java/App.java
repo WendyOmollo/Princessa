@@ -29,12 +29,12 @@ import static spark.Spark.*;
                 port(port);
 
             staticFileLocation("/public");
-
-            String connectionString = "jdbc:postgresql://localhost:5432/princessdomain";
-            Sql2o sql2o = new Sql2o(connectionString, "moringa", "hyperloop");
-//            String connectionString = "jdbc:postgresql://mckymsziswhzlc:50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6bec2-54-235-104-136.compute-1.amazonaws.com:5432/d81c6nlltt9rbq";
 //
-//Sql2o sql2o = new Sql2o(connectionString, "mckymsziswhzlc", "50acbf0f610f646d5f8b9f2fe9142a0f829e54133144ca7dacd16b407b636d6b");
+//            String connectionString = "jdbc:postgresql://localhost:5432/princessdomain";
+//            Sql2o sql2o = new Sql2o(connectionString, "moringa", "hyperloop");
+            String connectionString = "jdbc:postgresql://jybrrzjbqbtcqd:48801038927359e9dce92c3c898dd20766c8f960863b61406c2672585901b748@ec2-107-21-126-201.compute-1.amazonaws.com:5432/dbqsep44sta9tr\n";
+
+            Sql2o sql2o = new Sql2o(connectionString, "jybrrzjbqbtcqd\n", "48801038927359e9dce92c3c898dd20766c8f960863b61406c2672585901b748");
             Sql2oPrincessDao princessDao = new Sql2oPrincessDao(sql2o);
             Sql2oDomainDao domainDao = new Sql2oDomainDao(sql2o);
             Map<String, Object> model = new HashMap<>();
