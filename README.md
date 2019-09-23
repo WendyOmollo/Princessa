@@ -25,7 +25,7 @@ They can add a princess and also assign a princess a domain.
 * Each table will have the input it is taking.
 * For reference visit ``Digital Ocean``
 
-#####For deploying to Heroku:
+##### For deploying to Heroku:
 * You will need a ``Procfile`` that has your dyno.This is a dyno >``web:.build/install/princessa/bin/princessa``
 * In your ``build.gradle`` you will need some dependencies and tasks
 ``task stage(dependsOn: ['clean', 'installDist'])``
